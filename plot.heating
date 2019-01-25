@@ -1,0 +1,10 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Velocity [m/s]"
+set ylabel "Heat rate  [W/cm²]"
+set grid
+set xrange [0:4100]
+#set yrange [0:100] 
+set title "TrajSim - trajectory basic "
+plot "res.dat" using 5:($22 * 0.00001) 
+

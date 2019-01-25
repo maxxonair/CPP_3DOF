@@ -1,0 +1,14 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Iteration"
+set ylabel "Entry Mass [mt] "
+set grid
+#set output "traject.png"
+#set terminal svg enhanced background rgb 'white'
+#set object rectangle from screen 0, 0 to screen 1, 1 behind fillcolor rgb 'white' fillstyle solid nob order
+#set xrange [0:8700]
+#set yrange [0:60] 
+set title " Mass Loop  "
+plot "mres.dat" using 1:( $2 / 1000) w l 
+#plot "res2.dat" using 5:($4 / 1000) 
+

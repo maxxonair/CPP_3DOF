@@ -1,0 +1,16 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "BC [kg/m²]"
+set ylabel "Entry Mass [mt] "
+set y2label "Diameter [m]"
+#set output "traject.png"
+#set terminal svg enhanced background rgb 'white'
+#set object rectangle from screen 0, 0 to screen 1, 1 behind fillcolor rgb 'white' fillstyle solid nob order
+#set xrange [0:8700]
+#set yrange [0:60] 
+set y2tics
+set y3tics
+set title " Mass Loop  "
+plot "loop_res.dat" using 1:( $2 / 1000)  axes x1y1 title "Entry mass" , "loop_res.dat" using 1:(sqrt( 4*$2/(1.5*$1))) w l axes x1y2 "Capsule diameter" , "loop_res.dat" using 1:( $2*$1) w l axes x1y3
+#plot "res2.dat" using 5:($4 / 1000) 
+

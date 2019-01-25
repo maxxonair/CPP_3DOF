@@ -1,0 +1,75 @@
+#!/bin/bash
+m1=3.1
+m2=10
+zero=0
+control_var=0
+conv_line=0.05
+diff=$(echo "$m1 - $m2"|bc)
+echo $diff
+abscheck=$(echo $diff'<'$zero|bc -l)
+echo $abscheck
+if [ $abscheck -eq 1 ] ; then
+diff=$(echo "$zero - $diff"|bc)
+echo $diff
+fi
+#prozdiff=$(echo "$diff/$m2"|bc)
+prozdiff=$(echo print $diff/$m2 | perl)
+echo $prozdiff
+diffcheck=$(echo $prozdiff'<'$conv_line|bc -l)
+if [ $diffcheck -eq 1 ] ; then
+control_var=1
+fi
+echo $control_var
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#awk -f cut1.awk  res.dat rescut.dat
+#awk -v var=1 '{if( $31==$var )for(i=1;i<=NF;i++) ; print}' res.dat > rescut.dat
+#awk -v var="$variable" '{if(NR==9)for(i=1;i<=NF;i++) $1=var; print $0}' INPUT/c_ship.dat > c_ship.dat
+#---------------------------------------------------------
+#rm c_initial_thrust.dat
+#awk -v col=2 'FNR == 1 {print $col}' res3.dat >> c_initial_thrust.dat # longitude
+#awk -v col=3 'FNR == 1 {print $col}' res3.dat >> c_initial_thrust.dat # latitude
+#awk -v col=4 'FNR == 1 {print $col}' res3.dat >> c_initial_thrust.dat # altitude
+#awk -v col=5 'FNR == 1 {print $col}' res3.dat >> c_initial_thrust.dat # velocity 
+#awk -v col=6 'FNR == 1 {print $col}' res3.dat >> c_initial_thrust.dat # fpa
+#awk -v col=7 'FNR == 1 {print $col}' res3.dat >> c_initial_thrust.dat # local azimuth
+#mv c_initial_thrust.dat ./INPUT/
+#rm test.dat
+#awk -v col1=3  '{print $col1}' res3.dat >> test.dat
+#awk -v col1=4  '{print $col4}' res3.dat >> test.dat
+#awk '{print $3 $4}' res3.dat >> test.dat
+#awk   '{print $4,$5,$30}' res3.dat >> test.dat
+#value='cat interim2.dat'
+#echo $value
+#awk '{if (NR==1)for(i=1;i<=NF;i++) $i=($i=="10.7"?"10.8":$i; print $0}' /INPUT/c_ship.dat 
+#variable=10.7
+#vari=5
+#echo $variable '<' $vari | bc -l
+#echo 
+#echo $variable '>' $vari | bc -l
+#awk -v var="$variable" '{if(NR==9)for(i=1;i<=NF;i++) $1=var; print $0}' INPUT/c_ship.dat > c_ship.dat
+#mv c_ship.dat INPUT/
+# ---> awk -v var="$variable" '{if(NR==9)for(i=1;i<=NF;i++) $1=var; print $0}' INPUT/c_ship.dat > c_shield.dat
+#my_var2=$(awk 'NR==1 {print $1}' interim2.dat)
+#echo $my_var2
+#awk -v line=1 '{print NR=line}' res3.dat >> test.dat

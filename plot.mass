@@ -1,0 +1,10 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Velocity [m/s]"
+set ylabel "Start Mass / Mass [%]"
+set grid
+set xrange [0:4100]
+#set yrange [0:105] 
+set title "TrajSim - trajectory basic "
+plot "res.dat" using 5:($30)  with lines lw 2 
+

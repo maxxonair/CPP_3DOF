@@ -1,0 +1,11 @@
+
+Variable notes for c_mass_loop.dat
+
+(1) Payload mass [kg]
+(2) Phi_shield [kg]
+(3) Safety Margin (mass loop) [-]
+(4) Fuel/Oxidizer combination (TDS) [1] LOX/LCH4 [2] MMH/NTO
+(5) Tank pressure (TDS) [Pa]
+(6) Average drag coefficient [-]
+(7) Maximum iterations mass loop [-]
+(8) Convergence criterion [-] 0.01 = 1 proz. 

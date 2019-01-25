@@ -1,0 +1,26 @@
+#!/bin/bash
+if [ -e rescut.dat ] ; then
+rm rescut.dat
+fi
+awk  '$31 == 1 {print $0}' res.dat > rescut.dat
+#---------------------------------------------------------
+if [ -e c_initial_thrust.dat ] ; then
+rm c_initial_thrust.dat
+fi 
+awk -v col=2 'FNR == 1 {print $col}' rescut.dat >> c_initial_thrust.dat # longitude
+awk -v col=3 'FNR == 1 {print $col}' rescut.dat >> c_initial_thrust.dat # latitude
+awk -v col=4 'FNR == 1 {print $col}' rescut.dat >> c_initial_thrust.dat # altitude
+awk -v col=5 'FNR == 1 {print $col}' rescut.dat >> c_initial_thrust.dat # velocity 
+awk -v col=6 'FNR == 1 {print $col}' rescut.dat >> c_initial_thrust.dat # fpa
+awk -v col=7 'FNR == 1 {print $col}' rescut.dat >> c_initial_thrust.dat # local azimuth
+mv c_initial_thrust.dat ./INPUT/
+if [ -e rescut.dat ] ; then
+rm rescut.dat
+fi
+if [ -e thrust.dat ] ; then
+rm thrust.dat
+
+fi
+#-------------------------------------------------------------------
+ ./Launch_ThrustTrajectSim.exe >> thrust.dat
+#------------------------------------------------------------------

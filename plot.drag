@@ -1,0 +1,7 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Velocity [m/s]"
+set ylabel "Drag Force [N]"
+set grid
+#set xrange [0:4100]
+plot "res.dat" using 5:9 w l 

@@ -1,0 +1,6 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Velocity [m/s]"
+set ylabel "Lift Force [N]"
+set grid
+plot "res.dat" using 5:10 w l 

@@ -1,0 +1,10 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Time [s]"
+set ylabel "bank angle  [rad]"
+set grid
+#set xrange [0:4100]
+#set yrange [0:100] 
+set title "TrajSim - trajectory basic "
+plot "res.dat" using 1:($28) 
+

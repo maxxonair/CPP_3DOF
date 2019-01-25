@@ -1,0 +1,13 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Velocity [km/s]"
+set ylabel "Altitude  [km]"
+set y2label "Event Variable [-]"
+set grid
+#set xrange [0:8.7]
+set yrange [0:80] 
+set y2range [-1:3]
+set y2tics
+set title "TrajSim - trajectory basic "
+plot "res.dat" using ($1):( $4 / 1000)  with lines axes x1y1 lw 3 title "Altitude", "res.dat" using ($1):31 with lines axes x1y2 lw 3 title "Event Variable -0- initial -1- Thrusted Descent -2- Parachute"
+

@@ -1,0 +1,12 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Velocity [m/s]"
+set ylabel "Drag Coefficient [-]"
+set y2label "Lift Coefficient [-]"
+set grid
+set xrange [0:4100]
+#set yrange [0:100] 
+set y2tics
+set title "TrajSim - trajectory basic "
+plot "res.dat" using 5:20 with lines axes x1y1, "res.dat" using 5:21 with lines axes x1y2
+

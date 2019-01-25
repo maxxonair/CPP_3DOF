@@ -1,0 +1,76 @@
+#!/bin/bash	
+#----------------------------
+thstep=0.1
+maxiter=100
+vtdref=50
+mhref=80
+index="0"
+itstop=0
+#variable=$Th_start
+variable=$(awk 'NR==9 {print $1}' INPUT/c_ship.dat)
+
+#-----------------------------
+./thrust
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+while [ $index -lt $maxiter ] && [ $itstop -eq 0 ]
+do
+echo "------------  Iteration " $index "  ----------------"
+#------------------------------------------------------------
+if [ -e interim.dat ] ; then
+rm interim.dat
+fi 
+if [ -e interim2.dat ] ; then
+rm interim2.dat 
+fi
+awk   '{print $4,$5,$26,$30}' thrust.dat >> interim.dat
+./find_landing_val.exe >> interim2.dat
+#------------------------------------------------------------
+minh=$(awk 'NR==1 {print $1}' interim2.dat)
+vtd=$(awk 'NR==2 {print $1}' interim2.dat)
+echo "Velocity at touchdown [m/s] = " $vtd    #                                                 <-------
+echo "Altitude at touchdown [m] = " $minh   #                                                 <-------
+#...............................................
+if [ -e interim.dat ] ; then                   #
+rm interim.dat                                 #
+fi                                             #
+if [ -e interim2.dat ] ; then                  #
+rm interim2.dat                                #
+fi                                             #
+#...............................................
+#--------------------------------------------------------------------------------------------------------
+intvar1=$(echo $vtd '>' $vtdref | bc -l) 
+echo $intvar1  #                                               <-------
+if [ $intvar1 -eq 1 ] ; then
+variable=$(echo $variable + $thstep | bc )  
+awk -v var="$variable" '{if(NR==9)for(i=1;i<=NF;i++) $1=var; print $0}' INPUT/c_ship.dat > c_ship.dat
+mv c_ship.dat INPUT/
+./thrust
+else
+intvar2=$(echo $minh '>' $mhref | bc -l) 
+echo $intvar2  #                                               <-------
+if [ $intvar2 -eq 1 ] ; then
+variable=$(echo $variable - $thstep | bc )  
+awk -v var="$variable" '{if(NR==9)for(i=1;i<=NF;i++) $1=var; print $0}' INPUT/c_ship.dat > c_ship.dat
+mv c_ship.dat INPUT/
+./thrust
+fi
+fi
+#--------------------------------------------------------------------------------------------------------
+echo "TTW = " $variable  #                                    <-------
+arr[$index]=$variable 
+if [ $index -gt 3 ] 
+then
+ttwmin2=${arr[$index-2]}
+repcheck=$(echo $variable '==' $ttwmin2 | bc -l)
+if [ $repcheck -eq 1 ] 
+then
+itstop=1
+fi
+fi
+#----------------------------------------------------------------------
+index=$[ $index + 1 ]
+if [ $intvar1 -eq 0 ] && [ $intvar2 -eq 0 ] ; then
+itstop=1
+fi 
+done
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

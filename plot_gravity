@@ -1,0 +1,7 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Time [s]"
+set ylabel "Gravitational acceleration [m/s²]"
+set grid
+plot "res.dat" using 1:14 w l 
+

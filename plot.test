@@ -1,0 +1,10 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Time [s]"
+set ylabel "Thrust [N]"
+set grid
+set xrange [0:4100]
+set yrange [0:100] 
+set title "TrajSim - trajectory basic "
+plot "MachRes.dat" using 2:1  with lines lt rgb "black" notitle , "MachRes.dat" using 3:1 with lines lt rgb "black" notitle, "MachRes.dat" using 4:1 with lines lt rgb "black" notitle, "MachRes.dat" using 5:1 with lines lt rgb "black" notitle , "MachRes.dat" using 6:1 w l lt rgb "black" notitle , "MachRes.dat" using 7:1 w l lt rgb "black" notitle , "MachRes.dat" using 8:1 w l lt rgb "black" notitle , "MachRes.dat" using 9:1 w l lt rgb "black" notitle , "MachRes.dat" using 10:1 w l lt rgb "black" notitle
+

@@ -1,0 +1,8 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Velocity [m/s]"
+set ylabel "FPA [deg]"
+set grid
+set xrange [0:4100]
+plot "res.dat" using 5:($6 * 180/3.1415) 
+

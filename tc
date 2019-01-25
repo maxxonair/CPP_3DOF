@@ -1,0 +1,3 @@
+
+
+time g++ kkk.cpp -o Launch_ThrustTrajectSim.exe

@@ -1,0 +1,9 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "Time [s]"
+set ylabel "Altitude [km]"
+set grid
+#set yrange [13:18]
+#set xrange [300:1200] 
+plot "res.dat" using 1:($4 / 1000) 
+

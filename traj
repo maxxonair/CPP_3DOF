@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm res.dat
+time ./Launch_TrajectSim.exe >> res.dat

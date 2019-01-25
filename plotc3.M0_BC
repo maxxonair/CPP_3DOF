@@ -1,0 +1,14 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "BC [kg/m²]"
+set ylabel "Entry Mass [mt] "
+set grid
+#set output "traject.png"
+#set terminal svg enhanced background rgb 'white'
+#set object rectangle from screen 0, 0 to screen 1, 1 behind fillcolor rgb 'white' fillstyle solid nob order
+#set xrange [0:8700]
+#set yrange [0:60] 
+set title " Mass Loop - M_Payload = 25 [mt] ; 2 Event strategy "
+plot "loop_res_Phi11.dat" using 1:( $2 / 1000)  title "Phi_shield = 11 [kg/m²]" , "loop_res_Phi23.dat" using 1:( $2/1000)  title "Phi_shield = 23 [kg/m²]"
+#plot "res2.dat" using 5:($4 / 1000) 
+

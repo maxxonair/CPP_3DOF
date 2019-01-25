@@ -1,0 +1,17 @@
+#!/usr/bin/gnuplot -persist
+
+set xlabel "BC [kg/m²]"
+set ylabel "Entry Mass [mt] "
+set grid
+#set output "traject.png"
+#set terminal svg enhanced background rgb 'white'
+#set object rectangle from screen 0, 0 to screen 1, 1 behind fillcolor rgb 'white' fillstyle solid nob order
+#set xrange [0:8700]
+#set yrange [0:60] 
+set terminal pngcairo size 900,480 enhanced font 'Verdana,10'
+set label 2 '\ft test'         at 1.38,4e9     rotate by  78.5 center tc ls 1
+set output "BC_M0_Phi11_Mpayload25.png"
+set title " Entry Mass - Manned Mission  "
+plot "loop_res_Phi11_90.dat" using 1:( $2 / 1000)  title "Manned Mission (Mpayload = 25 [mt])  - Entry Mass"
+#plot "res2.dat" using 5:($4 / 1000) 
+
